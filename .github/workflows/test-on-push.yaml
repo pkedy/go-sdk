@@ -14,6 +14,7 @@ jobs:
     env:
       GOVER: 1.17
       GOLANGCILINT_VER: v1.31
+      GO_TIDY_COMPAT: 1.17
 
     steps:
 
@@ -35,7 +36,7 @@ jobs:
 
     - name: Tidy
       run: |
-        go mod tidy -compat=1.17
+        go mod tidy -compat=${{ env.GO_TIDY_COMPAT }}
         go mod vendor
 
     - name: Test

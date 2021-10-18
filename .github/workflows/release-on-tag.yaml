@@ -10,6 +10,8 @@ jobs:
   build:
     name: Create Release on Tag
     runs-on: ubuntu-latest
+    env:
+      GO_TIDY_COMPAT: 1.17
     steps:
 
     - name: Setup
@@ -22,7 +24,7 @@ jobs:
 
     - name: Tidy
       run: |
-        go mod tidy -compat=1.17
+        go mod tidy -compat=${{ env.GO_TIDY_COMPAT }}
         go mod vendor
 
     - name: Test
